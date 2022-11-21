@@ -3,7 +3,7 @@ part of flutter_bluetooth_serial;
 /// Represents information about the device. Could be out-of-date. // @TODO . add updating the info via some fn
 class BluetoothDevice {
   /// Broadcasted friendly name of the device.
-  final String name;
+  final String? name;
 
   /// MAC address of the device or identificator for platform system (if MAC addresses are prohibited).
   final String address;
@@ -30,7 +30,7 @@ class BluetoothDevice {
   /// Construct `BluetoothDevice` with given values.
   const BluetoothDevice({
     this.name,
-    this.address,
+    required this.address,
     this.type = BluetoothDeviceType.unknown,
     this.isConnected = false,
     this.bondState = BluetoothBondState.unknown,
@@ -39,7 +39,7 @@ class BluetoothDevice {
   /// Creates `BluetoothDevice` from map.
   ///
   /// Internally used to receive the object from platform code.
-  factory BluetoothDevice.fromMap(Map map) {
+  factory BluetoothDevice.fromMap(dynamic map) {
     return BluetoothDevice(
       name: map["name"],
       address: map["address"],
@@ -55,19 +55,20 @@ class BluetoothDevice {
 
   /// Creates map from `BluetoothDevice`.
   Map<String, dynamic> toMap() => {
-        "name": this.name,
-        "address": this.address,
-        "type": this.type.toUnderlyingValue(),
-        "isConnected": this.isConnected,
-        "bondState": this.bondState.toUnderlyingValue(),
+        "name": name,
+        "address": address,
+        "type": type.toUnderlyingValue(),
+        "isConnected": isConnected,
+        "bondState": bondState.toUnderlyingValue(),
       };
 
   /// Compares for equality of this and other `BluetoothDevice`.
   ///
   /// In fact, only `address` is compared, since this is most important
   /// and unchangable information that identifies each device.
+  @override
   operator ==(Object other) {
-    return other is BluetoothDevice && other.address == this.address;
+    return other is BluetoothDevice && other.address == address;
   }
 
   @override

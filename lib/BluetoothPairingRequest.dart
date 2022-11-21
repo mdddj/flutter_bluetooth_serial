@@ -84,9 +84,9 @@ class BluetoothPairingRequest {
 
   /// Construct `BluetoothPairingRequest` with given values.
   const BluetoothPairingRequest({
-    this.address,
-    this.pairingVariant,
-    this.passkey,
+    required this.address,
+    required this.pairingVariant,
+    required this.passkey,
   });
 
   /// Creates `BluetoothPairingRequest` from map.

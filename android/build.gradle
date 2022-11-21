@@ -3,17 +3,17 @@ version '1.0-SNAPSHOT'
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:3.3.3'
     }
 }
 rootProject.allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 apply plugin: 'com.android.library'
@@ -31,7 +31,7 @@ android {
         disable 'InvalidPackage'
     }
     dependencies {
-        implementation 'com.android.support:support-compat:27.1.1'
+        implementation 'com.android.support:support-compat:28.0.0'
     }
     buildToolsVersion '28.0.3'
 }
